@@ -9,6 +9,9 @@
 3.使用v-model获取值
 
 案例:
+
+/*
   <car-input v-model="carNum">
     <div>触发</div>
   </car-input>
+*/
