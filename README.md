@@ -10,8 +10,8 @@
 
 案例:
 
-/*
-###<car-input v-model="carNum">
-###    <div>触发</div>
-###</car-input>
-*/
+```
+<car-input v-model="carNum">
+   <div>触发</div>
+</car-input>
+````
