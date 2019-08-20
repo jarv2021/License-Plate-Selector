@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="container">
+
+    <div class="in-mask"
+         @click="clickMask"></div>
 
     <div @click="showWrap">
       <slot></slot>
@@ -20,9 +23,9 @@
             </div>
             <div class="in-delete"
                  @click="deleteItem">
-              <!-- <i class="cubeic-wrong"
-                 style="font-size:23px;"></i> -->
-              X
+              <i class="cubeic-wrong"
+                 style="font-size:23px;"></i>
+              <span>x</span>
             </div>
           </div>
           <div class="in-close"
@@ -98,7 +101,7 @@ export default {
         //   txt: '车牌号选择超过规定个数',
         //   type: 'txt'
         // }).show()
-        this.close()
+        // this.close()
       }
     },
     deleteItem () {
@@ -107,6 +110,10 @@ export default {
     },
     close () {
       this.show = false
+    },
+    clickMask () {
+      // console.log('clickMask')
+      this.close()
     }
   },
   mounted () {
@@ -115,154 +122,166 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.first-word-wrap {
-  // height: 9.4rem;
-  background-color: #d2d5db;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  .first-word {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    &::after {
-      //重要
-      width: 41px;
-      content: "";
-    }
-    .word {
-      box-sizing: border-box;
-      width: 30px;
-      height: 30px;
-      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
-      text-align: center;
-      margin: 5px;
-      span {
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        color: #000;
-        // border: 1px solid #fff;
-        border-radius: 0.125rem;
-      }
-    }
+.container {
+  .in-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
   }
-}
-.keyboard-wrap {
-  background-color: #d2d5db;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  .keyboard {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .in-alphabet {
+  .first-word-wrap {
+    // height: 9.4rem;
+    background-color: #d2d5db;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .first-word {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       &::after {
         //重要
-        width: 174px;
+        width: 41px;
         content: "";
       }
-      span {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .word {
+        box-sizing: border-box;
         width: 30px;
         height: 30px;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
-        background-color: #fff;
-        border-radius: 5px;
+        text-align: center;
         margin: 5px;
-        &:active {
-          background-color: #e4e4e4;
+        span {
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          color: #000;
+          // border: 1px solid #fff;
+          border-radius: 0.125rem;
         }
-        &.bordernone {
-          border: none;
-          box-shadow: none;
-          background-color: #d2d5db;
-          &:active {
-            background-color: #d2d5db;
-          }
-        }
-        &.delete {
-          background-color: #465266;
-        }
-        // &:last-child {
-        //   flex: 1;
-        // }
       }
     }
   }
-}
-
-.in-close {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 30px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
-  background-color: #fff;
-  border-radius: 5px;
-  margin: 5px;
-  &:active {
-    background-color: #e4e4e4;
-  }
-  &.bordernone {
-    border: none;
-    box-shadow: none;
+  .keyboard-wrap {
     background-color: #d2d5db;
-    &:active {
-      background-color: #d2d5db;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    .keyboard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .in-alphabet {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        &::after {
+          //重要
+          width: 174px;
+          content: "";
+        }
+        span {
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
+          background-color: #fff;
+          border-radius: 5px;
+          margin: 5px;
+          &:active {
+            background-color: #e4e4e4;
+          }
+          &.bordernone {
+            border: none;
+            box-shadow: none;
+            background-color: #d2d5db;
+            &:active {
+              background-color: #d2d5db;
+            }
+          }
+          &.delete {
+            background-color: #465266;
+          }
+          // &:last-child {
+          //   flex: 1;
+          // }
+        }
+      }
     }
   }
-  &.delete {
-    background-color: #465266;
-  }
-  &:last-child {
-    flex: 1;
-  }
-}
 
-.in-delete {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
-  background-color: #fff;
-  border-radius: 5px;
-  margin: 5px;
-
-  &:active {
-    background-color: #e4e4e4;
-  }
-  &.bordernone {
-    border: none;
-    box-shadow: none;
-    background-color: #d2d5db;
+  .in-close {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 5px;
     &:active {
+      background-color: #e4e4e4;
+    }
+    &.bordernone {
+      border: none;
+      box-shadow: none;
       background-color: #d2d5db;
+      &:active {
+        background-color: #d2d5db;
+      }
+    }
+    &.delete {
+      background-color: #465266;
+    }
+    &:last-child {
+      flex: 1;
     }
   }
-  &.delete {
-    background-color: #465266;
+
+  .in-delete {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.35);
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 5px;
+
+    &:active {
+      background-color: #e4e4e4;
+    }
+    &.bordernone {
+      border: none;
+      box-shadow: none;
+      background-color: #d2d5db;
+      &:active {
+        background-color: #d2d5db;
+      }
+    }
+    &.delete {
+      background-color: #465266;
+    }
   }
 }
 
