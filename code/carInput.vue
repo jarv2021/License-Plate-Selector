@@ -10,7 +10,7 @@
 
     <transition name="hehe">
 
-      <div v-if="show">
+      <div v-show="show">
         <!--车牌首字-->
         <div class="first-word-wrap"
              v-if="showFirst">
@@ -25,7 +25,6 @@
                  @click="deleteItem">
               <i class="cubeic-wrong"
                  style="font-size:23px;"></i>
-              <span>x</span>
             </div>
           </div>
           <div class="in-close"
@@ -97,12 +96,15 @@ export default {
       if (this.selectArr.length < 7) {
         this.selectArr.push(item)
       } else {
-        // this.$createToast({
-        //   txt: '车牌号选择超过规定个数',
-        //   type: 'txt'
-        // }).show()
-        // this.close()
+        this.close()
       }
+      // } else {
+      //   this.$createToast({
+      //     txt: '车牌号选择超过规定个数',
+      //     type: 'txt'
+      //   }).show()
+      //   this.close()
+      // }
     },
     deleteItem () {
       this.selectArr.pop()
@@ -118,6 +120,12 @@ export default {
   },
   mounted () {
     this.selectArr = []
+    let container = document.querySelector('.container')
+    container.addEventListener('click', (event) => {
+      if (event.target.id !== 'carInput' && event.target.nodeName !== 'SPAN' && event.target.nodeName !== 'DIV' && event.target.nodeName !== 'I') {
+        this.close()
+      }
+    })
   }
 }
 </script>
