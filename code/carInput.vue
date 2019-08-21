@@ -1,10 +1,10 @@
 <template>
   <div class="container">
 
-    <div class="in-mask"
-         @click="clickMask"></div>
+    <!-- <div class="in-mask"
+         @touchstart="clickMask"></div> -->
 
-    <div @click="showWrap">
+    <div @touchstart="showWrap">
       <slot></slot>
     </div>
 
@@ -17,18 +17,18 @@
           <div class="first-word">
             <div class="word"
                  v-for="item in allKeyWord.province"
-                 @click="selectFirstWord(item)"
+                 @touchstart="selectFirstWord(item)"
                  :key="item.id">
               <span>{{item}}</span>
             </div>
             <div class="in-delete"
-                 @click="deleteItem">
+                 @touchstart="deleteItem">
               <i class="cubeic-wrong"
                  style="font-size:23px;"></i>
             </div>
           </div>
           <div class="in-close"
-               @click="close">
+               @touchstart="close">
             收起
           </div>
         </div>
@@ -41,16 +41,16 @@
             <div class="in-alphabet">
               <span v-for="(item,index) in allKeyWord.alphabet"
                     :key="index"
-                    @click="clickKeyBoard(item)">{{item}}</span>
+                    @touchstart="clickKeyBoard(item)">{{item}}</span>
               <div class="in-delete"
-                   @click="deleteItem">
+                   @touchstart="deleteItem">
                 <i class="cubeic-wrong"
                    style="font-size:23px;"></i>
               </div>
             </div>
           </div>
           <div class="in-close"
-               @click="close">
+               @touchstart="close">
             收起
           </div>
 
@@ -98,13 +98,6 @@ export default {
       } else {
         this.close()
       }
-      // } else {
-      //   this.$createToast({
-      //     txt: '车牌号选择超过规定个数',
-      //     type: 'txt'
-      //   }).show()
-      //   this.close()
-      // }
     },
     deleteItem () {
       this.selectArr.pop()
